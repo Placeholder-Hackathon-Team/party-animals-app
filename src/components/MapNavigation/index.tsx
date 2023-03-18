@@ -1,4 +1,3 @@
-import { SetStateAction, useState } from 'react'
 import { GestureResponderEvent, StyleSheet, TouchableOpacity, View, Text } from 'react-native'
 import { COLORS } from '../../constants/colors'
 

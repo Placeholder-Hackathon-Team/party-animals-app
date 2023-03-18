@@ -1,4 +1,4 @@
-import Carousel from 'react-native-snap-carousel'
+import Carousel from 'react-native-new-snap-carousel'
 import { ResizeMode, Video } from 'expo-av'
 import { Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'

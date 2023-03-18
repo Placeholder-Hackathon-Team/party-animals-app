@@ -33,7 +33,42 @@ function CustomMarker() {
   )
 }
 
-export default function Map() {
+function CustomLike() {
+  return (
+    <View style={{ gap: -8 }}>
+      <View
+        style={{
+          marginBottom: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 8,
+          paddingVertical: 4,
+          backgroundColor: '#EBBA9FA6',
+          borderRadius: 16,
+        }}
+      >
+        <MaterialIcons name="thumb-up" size={16} color="white" />
+        <Text style={{ fontSize: 16, color: 'white', fontWeight: '600', marginLeft: 4 }}>78</Text>
+      </View>
+
+      <View style={{ flexGrow: 1, marginTop: 0, padding: 0, alignItems: 'center' }}>
+        <Entypo name="triangle-down" size={24} color={'#EBBA9FA6'} />
+      </View>
+    </View>
+  )
+}
+
+export default function Map({
+  selectedTab,
+  events,
+  places,
+  setSelectedObj,
+}: {
+  setSelectedObj: (val: any) => void
+  selectedTab: string
+  events: any[]
+  places: any[]
+}) {
   const mapViewRef = useRef<MapView | null>(null)
 
   return (
@@ -51,15 +86,29 @@ export default function Map() {
           longitudeDelta: 0.0221,
         }}
         customMapStyle={customMapStyle}
-        onPress={() => console.log(33333)}
+        onPress={() => setSelectedObj(null)}
       >
-        <Marker
-          pinColor={getColorByIndex(0)}
-          onPress={() => console.log(2)}
-          coordinate={{ longitude: 23.336304708167432, latitude: 42.65376444469917 }}
-        >
-          <CustomMarker />
-        </Marker>
+        {selectedTab === 'Events'
+          ? events.map((x, i) => (
+              <Marker
+                key={i}
+                onPress={() => setSelectedObj(x)}
+                coordinate={{ longitude: +x.location.longitude, latitude: +x.location.latitude }}
+                stopPropagation={true}
+              >
+                <CustomMarker />
+              </Marker>
+            ))
+          : places.map((x, i) => (
+              <Marker
+                key={i}
+                onPress={() => setSelectedObj(x)}
+                coordinate={{ longitude: +x.location.longitude, latitude: +x.location.latitude }}
+                stopPropagation={true}
+              >
+                <CustomLike />
+              </Marker>
+            ))}
       </MapView>
     </View>
   )

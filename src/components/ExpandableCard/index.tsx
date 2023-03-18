@@ -6,7 +6,7 @@ import CircleImage from '../Image'
 import FavoriteIcon from '../FavoriteIcon'
 import StoryCarousel from '../Carousel'
 
-const ExpandableCard = () => {
+const ExpandableCard = ({ selectedObj }: { selectedObj: any }) => {
   const [expanded, setExpanded] = useState(false)
   const [animation] = useState(new Animated.Value(0))
 
@@ -56,8 +56,8 @@ const ExpandableCard = () => {
             }}
           >
             <View>
-              <Text style={styles.titleText}>Carrusel Club</Text>
-              <Text style={styles.addressText}>ул. „Георги С. Раковски“ 108, София</Text>
+              <Text style={styles.titleText}>{selectedObj.name}</Text>
+              <Text style={styles.addressText}>{selectedObj.address}</Text>
             </View>
 
             <View>
@@ -68,12 +68,12 @@ const ExpandableCard = () => {
           <View style={{ marginLeft: 16, flexDirection: 'row', justifyContent: 'space-between', width: '67.5%' }}>
             <View>
               <Text style={styles.moreInfoTitle}>Opening hours</Text>
-              <Text style={styles.moreInfoText}>23:00 - 6:00</Text>
+              <Text style={styles.moreInfoText}>{selectedObj.workingHours}</Text>
             </View>
 
             <View>
               <Text style={styles.moreInfoTitle}>Entrance</Text>
-              <Text style={styles.moreInfoText}>10 BGN</Text>
+              <Text style={styles.moreInfoText}>{selectedObj.entryPrice} BGN</Text>
             </View>
           </View>
         </View>
