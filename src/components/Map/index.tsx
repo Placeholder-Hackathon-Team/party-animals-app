@@ -1,9 +1,37 @@
+import { Entypo, MaterialIcons } from '@expo/vector-icons'
 import React, { useRef } from 'react'
-import { StyleSheet, View } from 'react-native'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import { StyleSheet, Text, View } from 'react-native'
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import { COLORS } from '../../constants/colors'
+import { getColorByIndex } from '../../utils'
 
 const DEFAULT_LATITUDE = 42.67444429848731
 const DEFAULT_LONGITUDE = 23.330522262810607
+
+function CustomMarker() {
+  return (
+    <View style={{ gap: -8 }}>
+      <View
+        style={{
+          marginBottom: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 8,
+          paddingVertical: 4,
+          backgroundColor: COLORS.primary,
+          borderRadius: 16,
+        }}
+      >
+        <MaterialIcons name="emoji-people" size={20} color={'white'} />
+        <Text style={{ fontSize: 16, color: 'white', fontWeight: '600' }}>13</Text>
+      </View>
+
+      <View style={{ flexGrow: 1, marginTop: 0, padding: 0, alignItems: 'center' }}>
+        <Entypo name="triangle-down" size={24} color={COLORS.primary} />
+      </View>
+    </View>
+  )
+}
 
 export default function Map() {
   const mapViewRef = useRef<MapView | null>(null)
@@ -23,7 +51,16 @@ export default function Map() {
           longitudeDelta: 0.0221,
         }}
         customMapStyle={customMapStyle}
-      ></MapView>
+        onPress={() => console.log(33333)}
+      >
+        <Marker
+          pinColor={getColorByIndex(0)}
+          onPress={() => console.log(2)}
+          coordinate={{ longitude: 23.336304708167432, latitude: 42.65376444469917 }}
+        >
+          <CustomMarker />
+        </Marker>
+      </MapView>
     </View>
   )
 }
