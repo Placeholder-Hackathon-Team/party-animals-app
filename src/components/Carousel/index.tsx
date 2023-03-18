@@ -1,6 +1,8 @@
 import Carousel from 'react-native-snap-carousel'
 import { ResizeMode, Video } from 'expo-av'
 import { Image, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { Item } from '../../../App'
 
 const data = [
   {
@@ -32,19 +34,26 @@ const data = [
 ]
 
 export default function StoryCarousel() {
+  const navigation = useNavigation()
+
+  const handleOpen = (item: Item) => {
+    // @ts-ignore
+    navigation.navigate('Story', { item })
+  }
+
   return (
     <Carousel
       data={data}
       renderItem={({ item }) => {
         if (item.type === 'image') {
           return (
-            <TouchableOpacity onPress={() => null} activeOpacity={1}>
+            <TouchableOpacity onPress={() => handleOpen(item)} activeOpacity={1}>
               <Image source={item.source} style={{ width: '100%', height: 263, borderRadius: 20 }} />
             </TouchableOpacity>
           )
         } else {
           return (
-            <TouchableOpacity onPress={() => null} activeOpacity={1}>
+            <TouchableOpacity onPress={() => handleOpen(item)} activeOpacity={1}>
               <Video
                 resizeMode={ResizeMode.COVER}
                 source={item.source}
