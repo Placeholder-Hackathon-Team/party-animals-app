@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native'
+import MapView from 'react-native-maps'
+import Home from './src/screens/Home'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    // <View style={styles.container}>
+    <Home />
+    // {/* <MapView style={styles.map} /> */}
+    // </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -17,4 +18,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+})
