@@ -1,9 +1,10 @@
-import React, { Children, useState } from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../../constants/colors'
 import CircleImage from '../Image'
 import FavoriteIcon from '../FavoriteIcon'
+import StoryCarousel from '../Carousel'
 
 const ExpandableCard = () => {
   const [expanded, setExpanded] = useState(false)
@@ -21,7 +22,7 @@ const ExpandableCard = () => {
 
   const contentHeight = animation.interpolate({
     inputRange: [0, 190],
-    outputRange: [0, 360],
+    outputRange: [0, 300],
   })
 
   return (
@@ -41,14 +42,16 @@ const ExpandableCard = () => {
           />
         </View>
 
-        <View>
+        <View style={{ paddingRight: 24 }}>
           <View
             style={{
               paddingBottom: 0,
               marginLeft: 16,
+              marginRight: 24,
               borderBottomColor: COLORS.primary,
               borderBottomWidth: 1,
               flexDirection: 'row',
+              justifyContent: 'space-between',
               height: 48,
             }}
           >
@@ -77,7 +80,7 @@ const ExpandableCard = () => {
       </View>
 
       <Animated.View style={{ height: contentHeight, overflow: 'hidden', padding: 20 }}>
-        <Text>{'asdasd'}</Text>
+        <StoryCarousel />
       </Animated.View>
     </View>
   )
