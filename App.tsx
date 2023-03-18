@@ -13,7 +13,7 @@ export type Item = {
 // in the root stack navigator
 export type RootStackParamList = {
   Home: undefined
-  Story: { item: Item }
+  Story: { items: Item[]; index: number }
 }
 const Stack = createNativeStackNavigator<RootStackParamList>()
 

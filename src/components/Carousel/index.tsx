@@ -36,24 +36,24 @@ const data = [
 export default function StoryCarousel() {
   const navigation = useNavigation()
 
-  const handleOpen = (item: Item) => {
+  const handleOpen = (index: number) => {
     // @ts-ignore
-    navigation.navigate('Story', { item })
+    navigation.navigate('Story', { items: data, index })
   }
 
   return (
     <Carousel
       data={data}
-      renderItem={({ item }) => {
+      renderItem={({ item, index }) => {
         if (item.type === 'image') {
           return (
-            <TouchableOpacity onPress={() => handleOpen(item)} activeOpacity={1}>
+            <TouchableOpacity onPress={() => handleOpen(index)} activeOpacity={1}>
               <Image source={item.source} style={{ width: '100%', height: 263, borderRadius: 20 }} />
             </TouchableOpacity>
           )
         } else {
           return (
-            <TouchableOpacity onPress={() => handleOpen(item)} activeOpacity={1}>
+            <TouchableOpacity onPress={() => handleOpen(index)} activeOpacity={1}>
               <Video
                 resizeMode={ResizeMode.COVER}
                 source={item.source}
