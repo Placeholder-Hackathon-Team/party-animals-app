@@ -4,12 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Story from './src/screens/Story'
 import Profile from './src/screens/Profile'
 
-export type Item = {
-  type: string
-  source: {
-    uri: string
-  }
-}
+export type Item = any
 
 // in the root stack navigator
 export type RootStackParamList = {

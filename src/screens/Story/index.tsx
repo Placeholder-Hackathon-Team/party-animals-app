@@ -68,11 +68,8 @@ function StoryOwner() {
       onPress={() => navigation.navigate('Profile', { userId: currentUserId })}
     >
       <View style={styles.profilePicContainer}>
-        <Image
-          source={{ uri: 'https://i.pinimg.com/564x/3e/fd/7b/3efd7b3dbe7dbc36b0cd692d21665202.jpg' }}
-          style={styles.profilePic}
-        />
-        <FollowButton />
+        <Image source={{ uri: 'http://78.83.124.135:5000/rubberduck.png' }} style={styles.profilePic} />
+        {/* <FollowButton /> */}
       </View>
     </TouchableOpacity>
   )
@@ -94,10 +91,22 @@ export default function Story({ route }: StoryProps) {
         firstItem={i}
         data={items}
         renderItem={({ item, index }) => {
-          if (item.type === 'image') {
+          const type =
+            item.filePath.includes('.png') ||
+            item.filePath.includes('.jpeg') ||
+            item.filePath.includes('.jpg') ||
+            item.filePath.includes('.webp')
+              ? 'image'
+              : 'video'
+
+          if (type === 'image') {
             return (
               <View style={{ position: 'relative' }}>
-                <Image source={item.source} style={{ width: '100%', height: '100%' }} />
+                <Image
+                  resizeMode="contain"
+                  source={{ uri: item?.filePath }}
+                  style={{ width: '100%', height: '100%' }}
+                />
                 <StoryOwner />
                 <LikeButton />
                 <Options />
@@ -108,7 +117,7 @@ export default function Story({ route }: StoryProps) {
               <View style={{ position: 'relative' }}>
                 <Video
                   resizeMode={ResizeMode.CONTAIN}
-                  source={item.source}
+                  source={{ uri: item?.filePath }}
                   style={{ width: '100%', height: '100%' }}
                   shouldPlay={i === index}
                 />

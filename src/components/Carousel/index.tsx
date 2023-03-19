@@ -33,22 +33,30 @@ const data = [
   // add more items as needed
 ]
 
-export default function StoryCarousel() {
+export default function StoryCarousel({ stories }: { stories: any[] }) {
   const navigation = useNavigation()
 
   const handleOpen = (index: number) => {
     // @ts-ignore
-    navigation.navigate('Story', { items: data, index })
+    navigation.navigate('Story', { items: stories, index })
   }
 
   return (
     <Carousel
-      data={data}
+      data={stories}
       renderItem={({ item, index }) => {
-        if (item.type === 'image') {
+        const type =
+          item.filePath.includes('.png') ||
+          item.filePath.includes('.jpeg') ||
+          item.filePath.includes('.jpg') ||
+          item.filePath.includes('.webp')
+            ? 'image'
+            : 'video'
+
+        if (type === 'image') {
           return (
             <TouchableOpacity onPress={() => handleOpen(index)} activeOpacity={1}>
-              <Image source={item.source} style={{ width: '100%', height: 263, borderRadius: 20 }} />
+              <Image source={{ uri: item.filePath }} style={{ width: '100%', height: 263, borderRadius: 20 }} />
             </TouchableOpacity>
           )
         } else {
@@ -56,7 +64,7 @@ export default function StoryCarousel() {
             <TouchableOpacity onPress={() => handleOpen(index)} activeOpacity={1}>
               <Video
                 resizeMode={ResizeMode.COVER}
-                source={item.source}
+                source={{ uri: item.filePath }}
                 style={{ width: '100%', height: 263, borderRadius: 20 }}
                 shouldPlay={false}
               />

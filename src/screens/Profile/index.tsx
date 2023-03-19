@@ -138,7 +138,7 @@ export default function Profile({ route }: ProfileProps) {
           />
 
           <View style={{ marginTop: 16 }}>
-            {selectedTab === 'Places' ? <UserPlaces places={user?.places} /> : <UserStories />}
+            {selectedTab === 'Places' ? <UserPlaces places={user?.places} /> : <UserStories stories={user?.stories} />}
           </View>
         </View>
       ) : (

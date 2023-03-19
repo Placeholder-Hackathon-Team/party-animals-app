@@ -80,7 +80,7 @@ const ExpandableCard = ({ selectedObj }: { selectedObj: any }) => {
       </View>
 
       <Animated.View style={{ height: contentHeight, overflow: 'hidden', padding: 20 }}>
-        <StoryCarousel />
+        <StoryCarousel stories={selectedObj?.stories} />
       </Animated.View>
     </View>
   )
