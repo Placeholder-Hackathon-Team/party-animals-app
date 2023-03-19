@@ -42,7 +42,7 @@ export default function MapNavigation({
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: '10%',
+    top: '14%',
     alignSelf: 'center',
     display: 'flex',
     width: '81%',

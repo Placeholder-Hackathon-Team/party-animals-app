@@ -29,7 +29,7 @@ const FavoriteIcon = () => {
   )
 }
 
-function PlaceCard() {
+function PlaceCard({ item }: { item: any }) {
   return (
     <View style={styles.place}>
       <Image
@@ -39,7 +39,7 @@ function PlaceCard() {
           borderRadius: 14,
         }}
         source={{
-          uri: 'https://st.depositphotos.com/1053646/1770/i/950/depositphotos_17700789-stock-photo-dance-club.jpg',
+          uri: item?.imageUrl,
         }}
       />
 
@@ -58,8 +58,8 @@ function PlaceCard() {
         }}
       >
         <View style={{ width: 200 }}>
-          <Text style={styles.placeName}>Bar Friday</Text>
-          <Text style={styles.placeLoc}>ул. "Ген. Гурко" 21, София</Text>
+          <Text style={styles.placeName}>{item?.name}</Text>
+          <Text style={styles.placeLoc}>{item?.address}</Text>
         </View>
 
         <FavoriteIcon />
@@ -68,13 +68,9 @@ function PlaceCard() {
   )
 }
 
-export default function UserPlaces() {
+export default function UserPlaces({ places }: { places: any[] }) {
   return (
-    <FlatList
-      data={[{ id: '1' }, { id: '2' }]}
-      renderItem={({ item }) => <PlaceCard />}
-      keyExtractor={(item) => item.id}
-    />
+    <FlatList data={places} renderItem={({ item }) => <PlaceCard item={item} />} keyExtractor={(item) => item?._id} />
   )
 }
 

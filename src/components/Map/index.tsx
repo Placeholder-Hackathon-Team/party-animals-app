@@ -8,7 +8,7 @@ import { getColorByIndex } from '../../utils'
 const DEFAULT_LATITUDE = 42.67444429848731
 const DEFAULT_LONGITUDE = 23.330522262810607
 
-function CustomMarker() {
+function CustomMarker({ num }: { num: number }) {
   return (
     <View style={{ gap: -8 }}>
       <View
@@ -23,7 +23,7 @@ function CustomMarker() {
         }}
       >
         <MaterialIcons name="emoji-people" size={20} color={'white'} />
-        <Text style={{ fontSize: 16, color: 'white', fontWeight: '600' }}>13</Text>
+        <Text style={{ fontSize: 16, color: 'white', fontWeight: '600' }}>{num}</Text>
       </View>
 
       <View style={{ flexGrow: 1, marginTop: 0, padding: 0, alignItems: 'center' }}>
@@ -33,7 +33,7 @@ function CustomMarker() {
   )
 }
 
-function CustomLike() {
+function CustomLike({ num }: { num: number }) {
   return (
     <View style={{ gap: -8 }}>
       <View
@@ -48,7 +48,7 @@ function CustomLike() {
         }}
       >
         <MaterialIcons name="thumb-up" size={16} color="white" />
-        <Text style={{ fontSize: 16, color: 'white', fontWeight: '600', marginLeft: 4 }}>78</Text>
+        <Text style={{ fontSize: 16, color: 'white', fontWeight: '600', marginLeft: 4 }}>{num}</Text>
       </View>
 
       <View style={{ flexGrow: 1, marginTop: 0, padding: 0, alignItems: 'center' }}>
@@ -93,10 +93,10 @@ export default function Map({
               <Marker
                 key={i}
                 onPress={() => setSelectedObj(x)}
-                coordinate={{ longitude: +x.location.longitude, latitude: +x.location.latitude }}
+                coordinate={{ longitude: +x?.place?.location?.longitude, latitude: +x?.place?.location?.latitude }}
                 stopPropagation={true}
               >
-                <CustomMarker />
+                <CustomMarker num={x?.numberOfCurrentUsers} />
               </Marker>
             ))
           : places.map((x, i) => (
@@ -106,7 +106,7 @@ export default function Map({
                 coordinate={{ longitude: +x.location.longitude, latitude: +x.location.latitude }}
                 stopPropagation={true}
               >
-                <CustomLike />
+                <CustomLike num={x?.totalUsersVisits} />
               </Marker>
             ))}
       </MapView>

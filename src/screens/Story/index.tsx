@@ -58,12 +58,15 @@ function FollowButton() {
     </TouchableOpacity>
   )
 }
-
+export const currentUserId = '64162c5a127d1c1ed637de97'
 function StoryOwner() {
   const navigation = useNavigation()
   return (
-    // @ts-ignore
-    <TouchableOpacity style={styles.profilePicContainer} onPress={() => navigation.navigate('Profile')}>
+    <TouchableOpacity
+      style={styles.profilePicContainer}
+      // @ts-ignore
+      onPress={() => navigation.navigate('Profile', { userId: currentUserId })}
+    >
       <View style={styles.profilePicContainer}>
         <Image
           source={{ uri: 'https://i.pinimg.com/564x/3e/fd/7b/3efd7b3dbe7dbc36b0cd692d21665202.jpg' }}

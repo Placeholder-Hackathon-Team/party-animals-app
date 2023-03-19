@@ -5,6 +5,7 @@ import Map from '../../components/Map'
 import MapNavigation from '../../components/MapNavigation'
 import { SERVER_URL } from '../../utils/env'
 import axios from 'axios'
+import SearchBar from '../../components/SearchBar'
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState('Events')
@@ -33,6 +34,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Map selectedTab={selectedTab} events={events} places={places} setSelectedObj={setSelectedObj} />
+      <SearchBar />
       <MapNavigation selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       {selectedObj && <ExpandableCard selectedObj={selectedObj} />}
     </View>

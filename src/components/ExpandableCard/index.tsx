@@ -37,7 +37,7 @@ const ExpandableCard = ({ selectedObj }: { selectedObj: any }) => {
         <View>
           <CircleImage
             source={{
-              uri: 'https://st.depositphotos.com/1053646/1770/i/950/depositphotos_17700789-stock-photo-dance-club.jpg',
+              uri: selectedObj?.imageUrl,
             }}
           />
         </View>
@@ -57,7 +57,7 @@ const ExpandableCard = ({ selectedObj }: { selectedObj: any }) => {
           >
             <View>
               <Text style={styles.titleText}>{selectedObj.name}</Text>
-              <Text style={styles.addressText}>{selectedObj.address}</Text>
+              <Text style={styles.addressText}>{selectedObj.address || selectedObj?.place.address}</Text>
             </View>
 
             <View>
@@ -68,12 +68,12 @@ const ExpandableCard = ({ selectedObj }: { selectedObj: any }) => {
           <View style={{ marginLeft: 16, flexDirection: 'row', justifyContent: 'space-between', width: '67.5%' }}>
             <View>
               <Text style={styles.moreInfoTitle}>Opening hours</Text>
-              <Text style={styles.moreInfoText}>{selectedObj.workingHours}</Text>
+              <Text style={styles.moreInfoText}>{selectedObj.workingHours || selectedObj?.place.workingHours}</Text>
             </View>
 
             <View>
               <Text style={styles.moreInfoTitle}>Entrance</Text>
-              <Text style={styles.moreInfoText}>{selectedObj.entryPrice} BGN</Text>
+              <Text style={styles.moreInfoText}>{selectedObj.entryPrice || selectedObj.place.entryPrice} BGN</Text>
             </View>
           </View>
         </View>
