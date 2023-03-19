@@ -7,6 +7,7 @@ import Carousel from 'react-native-new-snap-carousel'
 import BackArrow from '../../components/BackArrow'
 import { COLORS } from '../../constants/colors'
 import { Entypo, Ionicons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
 function Options() {
   return (
@@ -59,14 +60,18 @@ function FollowButton() {
 }
 
 function StoryOwner() {
+  const navigation = useNavigation()
   return (
-    <View style={styles.profilePicContainer}>
-      <Image
-        source={{ uri: 'https://i.pinimg.com/564x/3e/fd/7b/3efd7b3dbe7dbc36b0cd692d21665202.jpg' }}
-        style={styles.profilePic}
-      />
-      <FollowButton />
-    </View>
+    // @ts-ignore
+    <TouchableOpacity style={styles.profilePicContainer} onPress={() => navigation.navigate('Profile')}>
+      <View style={styles.profilePicContainer}>
+        <Image
+          source={{ uri: 'https://i.pinimg.com/564x/3e/fd/7b/3efd7b3dbe7dbc36b0cd692d21665202.jpg' }}
+          style={styles.profilePic}
+        />
+        <FollowButton />
+      </View>
+    </TouchableOpacity>
   )
 }
 

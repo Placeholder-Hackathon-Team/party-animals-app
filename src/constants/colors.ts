@@ -5,4 +5,5 @@ export const COLORS = {
   gray: '#C5C5C5',
   secondaryGray: '#9E9E9E',
   places: '#EBBA9FA6',
+  light: '#D9D9D9',
 }
